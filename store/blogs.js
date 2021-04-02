@@ -1,5 +1,6 @@
 export const state = () => ({
-  blogs: []
+  blogs: [],
+  blog:{}
 });
 
 export const actions = {
@@ -14,6 +15,19 @@ export const actions = {
         console.log(e);
       }
     }
+  },
+  async getBlog({state, commit}, blogId) {
+    let blog = state.blogs.find(b => b.sys.id === blogId);
+    if(blog) {
+      commit('SAVE_BLOG', blog);
+      return;
+    }
+    try {
+      blog = await this.$blogs.getEntry(blogId);
+      commit('SAVE_BLOG', blog);
+    }catch(e) {
+      console.log(e);
+    }
   }
 };
 
@@ -22,9 +36,15 @@ export const mutations = {
     if(payload.length) {
       state.blogs = payload;
     }
+  },
+  SAVE_BLOG(state, payload = {}) {
+    if(Object.keys(payload).length) {
+      state.blog = payload;
+    }
   }
 };
 
 export const getters = {
-  blogs: ({blogs}) => blogs
+  blogs: ({blogs}) => blogs,
+  blog: ({blog}) => blog
 };
