@@ -1,5 +1,7 @@
 <template>
-  <div>index page</div>
+  <div>
+    blogs id
+  </div>
 </template>
 
 <script>
