@@ -14,9 +14,9 @@ export const actions = {
     dispatch('getToken');
   },
   revokeToken({dispatch}) {
-    document.cookie= 'token=;max-age=0';
+    document.cookie = 'token=;max-age=0';
     dispatch('getToken');
-    this.$router.push('/login');  
+    this.$router.push({path: '/login'});
   }
 };
 
