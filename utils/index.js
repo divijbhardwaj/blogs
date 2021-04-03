@@ -13,6 +13,26 @@ class DateUtil{
   }
 }
 
+class Form{
+  constructor() {
+    this.vuetify = [
+      {
+        type: ['text', 'password', 'email', 'number'],
+        name: 'v-text-field',
+        errorProp: 'errorMessages'
+      },
+      {
+        type: ['radio'],
+        name: 'v-radio-group'
+      }
+    ];
+  }
+  vuetifyComponents() {
+    return this.vuetify;
+  }
+}
+
 export default {
-  DATE: new DateUtil()
+  DATE: new DateUtil(),
+  FORM: new Form()
 }

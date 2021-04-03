@@ -29,6 +29,9 @@
       fixed
       app
     >
+      <v-btn @click="logout">
+        logout
+      </v-btn>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
@@ -111,6 +114,11 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/revokeToken');
     }
   }
 }

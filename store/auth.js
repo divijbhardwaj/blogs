@@ -13,8 +13,10 @@ export const actions = {
     document.cookie = `token=${val};expires=${expiry.toUTCString()}`;
     dispatch('getToken');
   },
-  revokeToken() {
-    document.cookie= 'token=;max-age=0';  
+  revokeToken({dispatch}) {
+    document.cookie= 'token=;max-age=0';
+    dispatch('getToken');
+    this.$router.push('/login');  
   }
 };
 

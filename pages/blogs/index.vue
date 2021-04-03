@@ -11,6 +11,7 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
+  middleware: ['authenticated'],
   components: {
     ListItem: () => import('@/components/blogs/ListItem')
   },
