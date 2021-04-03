@@ -43,7 +43,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
+    ['@nuxtjs/vuetify', { treeShake: false }],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -58,7 +58,6 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    treeShake: false,
     theme: {
       dark: false,
       themes: {
