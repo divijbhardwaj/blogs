@@ -1,5 +1,5 @@
 <template>
-  <div @click="save">
+  <div @click="saveFav">
     <v-rating
       length="1"
       :value="marked"
@@ -26,7 +26,7 @@ export default {
     }
   },
   methods: {
-    save() {
+    saveFav() {
       this.$store.dispatch('blogs/addToFavBlogs', this.blogId);
     }
   }
