@@ -26,20 +26,25 @@ export default {
     }),
   },
   created() {
-    this.getFavBlogsData()
+    this.getFavBlogsData();
   },
   methods: {
-    getFavBlogsData() {
+    async getFavBlogsData() {
       if(!this.favBlogs.length) {
         this.$store.dispatch('blogs/getFavBlogs');
       }
       if(this.favBlogs.length) {
-        this.favBlogs.forEach(async(blogId) => {
-         const blog =  await this.$store.dispatch('blogs/getBlog', blogId);
-         if(blog) {
-            this.favBlogsData.push(blog);
-         }
-        });
+        for(const blogId of this.favBlogs){
+          try {
+            console.log(blogId);
+            const blog = await this.$blogs.getEntry(blogId);
+            if(blog) {
+              this.favBlogsData = [...this.favBlogsData, blog];
+            }
+          }catch(e) {
+            console.log(e);
+          }
+        }
       }
     }
   }
