@@ -27,6 +27,7 @@ export const actions = {
     try {
       blog = await this.$blogs.getEntry(blogId);
       commit('SAVE_BLOG', blog);
+      return blog;
     }catch(e) {
       console.log(e);
     }
