@@ -1,9 +1,16 @@
 <template>
   <div @click="saveFav">
-    <v-rating
-      length="1"
-      :value="marked"
-    />
+    <v-rating :value="marked" length="1">
+      <template v-slot:item="props">
+        <v-icon
+          :color="props.isFilled ? 'orange' : 'grey lighten-1'"
+          large
+          @click="props.click"
+        >
+          {{ props.isFilled ? 'mdi-star-circle' : 'mdi-star-circle-outline' }}
+        </v-icon>
+      </template>
+    </v-rating>
   </div>
 </template>
 
@@ -28,11 +35,10 @@ export default {
   methods: {
     saveFav() {
       this.$store.dispatch('blogs/addToFavBlogs', this.blogId);
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style>
-
+<style lang="scss">
 </style>

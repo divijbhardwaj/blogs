@@ -51,10 +51,5 @@ export default {
 </script>
 
 <style lang="scss"> 
-.blogs-page {
-  .blogs-list-container {
-    display: flex;
-    flex-direction: column;
-  }
-}
+  @import '~/assets/styles/pages/blogs.scss';
 </style>
