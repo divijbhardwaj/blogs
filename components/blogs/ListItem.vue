@@ -3,7 +3,7 @@
     <div class="blog-details-container">
       <h2 class="blog-title">{{fields.title}}</h2>
       <p class="blog-desc">{{fields.description}} <nuxt-link :to="blogPage">Read more</nuxt-link></p>
-      <p class="blog-createdOn">{{createdAt}}</p>
+      <p class="blog-createdOn">{{createdAt}} <mark-fav :blogId="blog.sys.id"/></p>
     </div>
     <div class="blog-img-container">
       <img class="blog-img" :src="fields.url" alt="blog img">
@@ -13,6 +13,9 @@
 
 <script>
 export default {
+  components: {
+    MarkFav: () => import('@/components/blogs/MarkFav')
+  },
   props: {
     blog: {
       type: Object,
