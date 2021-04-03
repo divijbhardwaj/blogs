@@ -36,7 +36,6 @@ export default {
       if(this.favBlogs.length) {
         for(const blogId of this.favBlogs){
           try {
-            console.log(blogId);
             const blog = await this.$blogs.getEntry(blogId);
             if(blog) {
               this.favBlogsData = [...this.favBlogsData, blog];
