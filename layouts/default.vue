@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
+      v-if="isAuth"
       v-model="drawer"
       fixed
       app
@@ -13,9 +14,9 @@
           router
           exact
         >
-          <v-list-item-action>
+          <!-- <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
+          </v-list-item-action> -->
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
@@ -27,10 +28,10 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <!-- <v-toolbar-title v-text="'Blogs'" /> -->
+      <v-app-bar-nav-icon v-if="isAuth" @click.stop="drawer = !drawer" />
+      <v-toolbar-title v-text="'Blogs'" />
       <v-spacer />
-      <v-btn @click="logout" small color="warning">
+      <v-btn v-if="isAuth" @click="logout" small color="warning">
         logout
       </v-btn>
     </v-app-bar>
@@ -49,6 +50,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
   data () {
     return {
@@ -57,18 +59,23 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          // icon: 'mdi-apps',
+          title: 'All blogs',
+          to: '/blogs'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          // icon: 'mdi-chart-bubble',
+          title: 'Favourite blogs',
+          to: '/favourite-blogs'
         }
       ],
       // title: 'Vuetify.js'
     }
+  },
+  computed: {
+    ...mapGetters({
+      isAuth: 'auth/token'
+    })
   },
   methods: {
     logout() {
